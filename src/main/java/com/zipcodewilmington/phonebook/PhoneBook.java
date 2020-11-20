@@ -1,5 +1,6 @@
 package com.zipcodewilmington.phonebook;
 
+import java.security.KeyStore;
 import java.util.*;
 
 //import java.util.HashMap;
@@ -17,7 +18,7 @@ public class PhoneBook {
     }
 
     public PhoneBook() {
-        this(new HashMap<>());
+        this(new LinkedHashMap<>());
     }
 
     public void add(String name, String phoneNumber) {
@@ -42,14 +43,24 @@ public class PhoneBook {
     }
 
     public String reverseLookup(String phoneNumber)  {
+        String mapKey = "";
+        for (Map.Entry<String, List<String>> forMap : phonebook.entrySet()) {
+            if (forMap.getValue().contains(phoneNumber)) {
+                mapKey = forMap.getKey();
+            }
+        }
 
-
-            return null;
+        return mapKey;
     }
 
     public List<String> getAllContactNames() {
+        ArrayList<String> contactList = new ArrayList<>(phonebook.size());
+        for( String contacts : phonebook.keySet()) {
+            contactList.add(contacts);
+        }
 
-        return null;
+
+        return contactList;
     }
 
     public Map<String, List<String>> getMap() {
